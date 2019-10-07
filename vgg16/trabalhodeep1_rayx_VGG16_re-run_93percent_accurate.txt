@@ -1,0 +1,41 @@
+trabalhodeep1_rayx_VGG16_re-run_93percent_accurate.txt
+cuda:0
+Resize 256
+randomcrop 80
+batchsize - 50
+transforms.RandomHorizontalFlip()
+transforms.RandomRotation(10)
+transforms.RandomAffine(0,shear=10,scale=(0.8,1.6)),
+transforms.ColorJitter(brightness=0.2,contrast=0.2,saturation=0.2),
+105
+1
+13
+sem peso
+optimizer = torch.optim.Adam(model.parameters(), lr = 0.001)
+levou 0.0033800601959228516 segundos 
+epoch:  1
+train_loss: 0.0109,0.7446
+valid_loss: 0.0375, 
+valid_acc 0.5625
+epoch:  2
+train_loss: 0.0101,0.7671
+valid_loss: 0.0405, 
+valid_acc 0.6250
+epoch:  3
+train_loss: 0.0098,0.7619
+valid_loss: 0.0428, 
+valid_acc 0.5000
+epoch:  4
+train_loss: 0.0099,0.7711
+valid_loss: 0.0445, 
+valid_acc 0.6250
+epoch:  5
+train_loss: 0.0099,0.7711
+valid_loss: 0.0360, 
+valid_acc 0.6250
+levou 447.63601088523865 segundos 
+acertos: 42 
+erros:8
+tensor([[101., 133.],
+        [ 40., 350.]])
+tensor([0.4316, 0.8974])
