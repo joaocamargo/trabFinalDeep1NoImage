@@ -1,0 +1,67 @@
+trabalhodeep1_rayx_VGG16_SEM_TREINO.txt
+cuda:0
+Resize 256
+randomcrop 224
+batchsize - 100
+transforms.RandomHorizontalFlip()
+transforms.RandomRotation(10)
+transforms.RandomAffine(0,shear=10,scale=(0.8,1.6)),
+transforms.ColorJitter(brightness=0.2,contrast=0.2,saturation=0.2),
+53
+1
+7
+CrossEntropyLoss()
+Adagrad (
+Parameter Group 0
+    initial_accumulator_value: 0
+    lr: 0.001
+    lr_decay: 0
+    weight_decay: 0
+)
+levou 0.002905607223510742 segundos 
+epoch:  1
+train_loss: 0.0062,0.7404
+valid_loss: 0.0523, 
+valid_acc 0.5000
+epoch:  2
+train_loss: 0.0061,0.7429
+valid_loss: 0.0530, 
+valid_acc 0.5000
+epoch:  3
+train_loss: 0.0061,0.7429
+valid_loss: 0.0525, 
+valid_acc 0.5000
+epoch:  4
+train_loss: 0.0061,0.7429
+valid_loss: 0.0514, 
+valid_acc 0.5000
+epoch:  5
+train_loss: 0.0060,0.7429
+valid_loss: 0.0531, 
+valid_acc 0.5000
+epoch:  6
+train_loss: 0.0061,0.7429
+valid_loss: 0.0518, 
+valid_acc 0.5000
+epoch:  7
+train_loss: 0.0060,0.7429
+valid_loss: 0.0514, 
+valid_acc 0.5000
+epoch:  8
+train_loss: 0.0061,0.7429
+valid_loss: 0.0514, 
+valid_acc 0.5000
+epoch:  9
+train_loss: 0.0061,0.7429
+valid_loss: 0.0508, 
+valid_acc 0.5000
+epoch:  10
+train_loss: 0.0061,0.7429
+valid_loss: 0.0515, 
+valid_acc 0.5000
+levou 1274.284791469574 segundos 
+acertos: 59 
+erros:41
+tensor([[  0., 234.],
+        [  0., 390.]])
+tensor([0., 1.])
