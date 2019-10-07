@@ -1,0 +1,63 @@
+cuda:0
+Resize 256
+randomcrop 224
+batchsize - 100
+53
+1
+7
+CrossEntropyLoss()
+Adagrad (
+Parameter Group 0
+    initial_accumulator_value: 0
+    lr: 0.001
+    lr_decay: 0
+    weight_decay: 0
+)
+levou 0.003504514694213867 segundos 
+epochs =10
+epoch:  1
+train_loss: 0.0056,0.7435
+valid_loss: 0.0449, 
+valid_acc 0.5000
+epoch:  2
+train_loss: 0.0054,0.7546
+valid_loss: 0.0435, 
+valid_acc 0.5625
+epoch:  3
+train_loss: 0.0053,0.7546
+valid_loss: 0.0458, 
+valid_acc 0.5625
+epoch:  4
+train_loss: 0.0053,0.7533
+valid_loss: 0.0440, 
+valid_acc 0.5625
+epoch:  5
+train_loss: 0.0053,0.7481
+valid_loss: 0.0452, 
+valid_acc 0.5625
+epoch:  6
+train_loss: 0.0053,0.7542
+valid_loss: 0.0431, 
+valid_acc 0.5625
+epoch:  7
+train_loss: 0.0053,0.7490
+valid_loss: 0.0442, 
+valid_acc 0.5625
+epoch:  8
+train_loss: 0.0052,0.7496
+valid_loss: 0.0427, 
+valid_acc 0.5625
+epoch:  9
+train_loss: 0.0052,0.7552
+valid_loss: 0.0463, 
+valid_acc 0.5625
+epoch:  10
+train_loss: 0.0052,0.7561
+valid_loss: 0.0444, 
+valid_acc 0.5625
+levou 1184.1809341907501 segundos 
+acertos: 59 
+erros:41
+tensor([[  4., 230.],
+        [  1., 389.]])
+tensor([0.0171, 0.9974])
