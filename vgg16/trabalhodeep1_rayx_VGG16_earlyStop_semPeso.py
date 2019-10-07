@@ -6,7 +6,10 @@ import torch.nn.functional as F
 from torch import nn
 from torchvision import datasets, transforms, models
 
-filename = "VGG16_10e_patience3_sem_peso_batch64.txt"
+import os as os
+filename = os.path.basename(__file__) + ".txt"
+
+#filename = "VGG16_10e_patience3_sem_peso.txt"
 
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
@@ -65,7 +68,7 @@ class EarlyStopping:
 
 """# Importar dataset"""
 
-pathXRayImages =  './chest_xray'
+pathXRayImages =  '../../../trabalhoFinalDeep1/chest_xray'
 from PIL import Image
 std = []
 PATHTrain = pathXRayImages + '/train/'
@@ -93,7 +96,7 @@ classes = (
 	
 print('Resize 256',file=open(filename, "a"))
 print('randomcrop 224',file=open(filename, "a"))
-print('batchsize - 64',file=open(filename, "a"))
+print('batchsize - 100',file=open(filename, "a"))
 print('transforms.RandomHorizontalFlip()',file=open(filename, "a"))
 print('transforms.RandomRotation(10)',file=open(filename, "a"))
 print('transforms.RandomAffine(0,shear=10,scale=(0.8,1.6)),',file=open(filename, "a"))
@@ -119,12 +122,12 @@ transform = transforms.Compose([transforms.Resize((256,256)),
 
 training_dataset = datasets.ImageFolder(root=PATHTrain,transform=transform_train)
 validation_dataset = datasets.ImageFolder(root=PATHVal,transform=transform)
-training_loader = torch.utils.data.DataLoader(dataset=training_dataset,batch_size=64,shuffle=True)
-validation_loader = torch.utils.data.DataLoader(dataset=validation_dataset,batch_size=64,shuffle=False)
+training_loader = torch.utils.data.DataLoader(dataset=training_dataset,batch_size=100,shuffle=True)
+validation_loader = torch.utils.data.DataLoader(dataset=validation_dataset,batch_size=100,shuffle=False)
 
 
 test_dataset = datasets.ImageFolder(root=PATHTest,transform=transform)
-test_loader = torch.utils.data.DataLoader(dataset=test_dataset,batch_size=64,shuffle=True)
+test_loader = torch.utils.data.DataLoader(dataset=test_dataset,batch_size=100,shuffle=True)
 
 
 print(len(training_loader),file=open(filename, "a"))
@@ -161,8 +164,8 @@ print('sem peso',file=open(filename, "a"))
 #criterion = nn.CrossEntropyLoss(weight=weights)
 criterion = nn.CrossEntropyLoss()
 
-print('optimizer = torch.optim.Adagrad(model.parameters(), lr = 0.0001)',file=open(filename, "a"))
-optimizer = torch.optim.Adagrad(model.parameters(), lr = 0.0001)
+print('optimizer = torch.optim.Adagrad(model.parameters(), lr = 0.001)',file=open(filename, "a"))
+optimizer = torch.optim.Adagrad(model.parameters(), lr = 0.001)
 
 
 print('levou {} segundos '.format(time.time() - start_time),file=open(filename, "a"))

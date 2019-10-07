@@ -6,12 +6,11 @@ import torch.nn.functional as F
 from torch import nn
 from torchvision import datasets, transforms, models
 
-filename = "resnet50_10e_patience3_sem_peso_0-0001.txt"
+filename = "mobilenet_v2_10e_patience3_16_1.txt"
 
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 #device = "cpu"
-print(filename,file=open(filename, "a"))
 print(device,file=open(filename, "a"))
 
 import numpy as np
@@ -65,7 +64,7 @@ class EarlyStopping:
 
 """# Importar dataset"""
 
-pathXRayImages =  './chest_xray'
+pathXRayImages =  '../../../trabalhoFinalDeep1/chest_xray'
 from PIL import Image
 std = []
 PATHTrain = pathXRayImages + '/train/'
@@ -94,13 +93,6 @@ classes = (
 print('Resize 256',file=open(filename, "a"))
 print('randomcrop 224',file=open(filename, "a"))
 print('batchsize - 100',file=open(filename, "a"))
-print('transforms.RandomHorizontalFlip()',file=open(filename, "a"))
-print('transforms.RandomRotation(10)',file=open(filename, "a"))
-print('transforms.RandomAffine(0,shear=10,scale=(0.8,1.6)),',file=open(filename, "a"))
-print('transforms.ColorJitter(brightness=0.2,contrast=0.2,saturation=0.2),',file=open(filename, "a"))
-
-
-
 
 	
 transform_train = transforms.Compose([transforms.Resize((256,256)),
@@ -136,24 +128,30 @@ images,labels = dataiter.next()
 
 #MODEL#MODEL#MODEL#MODEL#MODEL#MODEL#MODEL#MODEL
 
-model = models.resnet50(pretrained=True)
-model.fc = nn.Linear(2048, 2)  
-model.to(device)
+model = models.mobilenet_v2(pretrained=True)
+model
 
+for param in model.features.parameters():
+  param.requires_grad =False
+  
+#mudando apenas para duas classes
+n_inputs = model.classifier[1].in_features
+last_layer = nn.Linear(n_inputs,len(classes))
+model.classifier[1] = last_layer
+model.to(device)
+print(model)
 
 ########EPOCHS###########
 
 import time
 start_time = time.time()
 
+weights = torch.tensor([16.0, 1.0]).to(device)
+print('weights = torch.tensor([16.0, 1.0]).to(device)',file=open(filename, "a"))
 
-print('sem peso',file=open(filename, "a"))
-#weights = torch.tensor([16.0, 1.0]).to(device)
-#criterion = nn.CrossEntropyLoss(weight=weights)
-criterion = nn.CrossEntropyLoss()
-
-print('optimizer = torch.optim.Adagrad(model.parameters(), lr = 0.0001)',file=open(filename, "a"))
-optimizer = torch.optim.Adagrad(model.parameters(), lr = 0.0001)
+criterion = nn.CrossEntropyLoss(weight=weights)
+optimizer = torch.optim.Adagrad(model.parameters(), lr = 0.001)
+print('optimizer = torch.optim.Adagrad(model.parameters(), lr = 0.001)',file=open(filename, "a"))
 
 
 print('levou {} segundos '.format(time.time() - start_time),file=open(filename, "a"))
@@ -164,8 +162,10 @@ print('levou {} segundos '.format(time.time() - start_time),file=open(filename, 
 import time
 start_time = time.time()
 
-patience = 3
+print('epochs =10, patience = 3',file=open(filename, "a"))
 
+
+patience = 3
 epochs =10
 
 running_loss_history=[]

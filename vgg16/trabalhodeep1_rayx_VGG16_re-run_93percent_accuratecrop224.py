@@ -6,7 +6,7 @@ import torch.nn.functional as F
 from torch import nn
 from torchvision import datasets, transforms, models
 
-filename = "resnet50_10e_patience3_16_1.txt"
+filename = "trabalhodeep1_rayx_VGG16_re-run_93percent_accuratecrop224.txt"
 
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
@@ -65,7 +65,7 @@ class EarlyStopping:
 
 """# Importar dataset"""
 
-pathXRayImages =  '../../trabalhoFinalDeep1/chest_xray'
+pathXRayImages =  '../../../trabalhoFinalDeep1/chest_xray'
 from PIL import Image
 std = []
 PATHTrain = pathXRayImages + '/train/'
@@ -93,7 +93,7 @@ classes = (
 	
 print('Resize 256',file=open(filename, "a"))
 print('randomcrop 224',file=open(filename, "a"))
-print('batchsize - 100',file=open(filename, "a"))
+print('batchsize - 50',file=open(filename, "a"))
 print('transforms.RandomHorizontalFlip()',file=open(filename, "a"))
 print('transforms.RandomRotation(10)',file=open(filename, "a"))
 print('transforms.RandomAffine(0,shear=10,scale=(0.8,1.6)),',file=open(filename, "a"))
@@ -119,12 +119,12 @@ transform = transforms.Compose([transforms.Resize((256,256)),
 
 training_dataset = datasets.ImageFolder(root=PATHTrain,transform=transform_train)
 validation_dataset = datasets.ImageFolder(root=PATHVal,transform=transform)
-training_loader = torch.utils.data.DataLoader(dataset=training_dataset,batch_size=100,shuffle=True)
-validation_loader = torch.utils.data.DataLoader(dataset=validation_dataset,batch_size=100,shuffle=False)
+training_loader = torch.utils.data.DataLoader(dataset=training_dataset,batch_size=50,shuffle=True)
+validation_loader = torch.utils.data.DataLoader(dataset=validation_dataset,batch_size=50,shuffle=False)
 
 
 test_dataset = datasets.ImageFolder(root=PATHTest,transform=transform)
-test_loader = torch.utils.data.DataLoader(dataset=test_dataset,batch_size=100,shuffle=True)
+test_loader = torch.utils.data.DataLoader(dataset=test_dataset,batch_size=50,shuffle=True)
 
 
 print(len(training_loader),file=open(filename, "a"))
@@ -136,9 +136,18 @@ images,labels = dataiter.next()
 
 #MODEL#MODEL#MODEL#MODEL#MODEL#MODEL#MODEL#MODEL
 
-model = models.resnet50(pretrained=True)
-model.fc = nn.Linear(2048, 2)  
+model = models.vgg16(pretrained=True)
+model
+
+for param in model.parameters():
+    param.requires_grad = False  #usado em neural style transfer
+	
+
+n_inputs = model.classifier[6].in_features
+last_layer = nn.Linear(n_inputs,len(classes))
+model.classifier[6] = last_layer
 model.to(device)
+print(model)
 
 
 ########EPOCHS###########
@@ -147,11 +156,15 @@ import time
 start_time = time.time()
 
 
-print('weights = torch.tensor([16.0, 1.0]).to(device)',file=open(filename, "a"))
-weights = torch.tensor([16.0, 1.0]).to(device)
-criterion = nn.CrossEntropyLoss(weight=weights)
+#print('weights = torch.tensor([16.0, 1.0]).to(device)',file=open(filename, "a"))
+#weights = torch.tensor([16.0, 1.0]).to(device)
+#criterion = nn.CrossEntropyLoss(weight=weights)
 
-print('optimizer = torch.optim.Adagrad(model.parameters(), lr = 0.001)',file=open(filename, "a"))
+
+print('sem peso',file=open(filename, "a"))
+criterion = nn.CrossEntropyLoss()
+
+print('optimizer = torch.optim.Adam(model.parameters(), lr = 0.001)',file=open(filename, "a"))
 optimizer = torch.optim.Adagrad(model.parameters(), lr = 0.001)
 
 
@@ -163,9 +176,9 @@ print('levou {} segundos '.format(time.time() - start_time),file=open(filename, 
 import time
 start_time = time.time()
 
-patience = 3
+patience = 6
 
-epochs =10
+epochs =5
 
 running_loss_history=[]
 running_corrects_history=[]

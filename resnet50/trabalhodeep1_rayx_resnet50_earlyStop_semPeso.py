@@ -6,7 +6,7 @@ import torch.nn.functional as F
 from torch import nn
 from torchvision import datasets, transforms, models
 
-filename = "VGG16_10e_patience3_sem_peso_0-0001.txt"
+filename = "resnet50_10e_patience3_sem_peso.txt"
 
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
@@ -65,7 +65,7 @@ class EarlyStopping:
 
 """# Importar dataset"""
 
-pathXRayImages =  './chest_xray'
+pathXRayImages =  '../../../trabalhoFinalDeep1/chest_xray'
 from PIL import Image
 std = []
 PATHTrain = pathXRayImages + '/train/'
@@ -136,18 +136,9 @@ images,labels = dataiter.next()
 
 #MODEL#MODEL#MODEL#MODEL#MODEL#MODEL#MODEL#MODEL
 
-model = models.vgg16(pretrained=True)
-model
-
-for param in model.parameters():
-    param.requires_grad = False  #usado em neural style transfer
-	
-
-n_inputs = model.classifier[6].in_features
-last_layer = nn.Linear(n_inputs,len(classes))
-model.classifier[6] = last_layer
+model = models.resnet50(pretrained=True)
+model.fc = nn.Linear(2048, 2)  
 model.to(device)
-print(model)
 
 
 ########EPOCHS###########
@@ -161,8 +152,8 @@ print('sem peso',file=open(filename, "a"))
 #criterion = nn.CrossEntropyLoss(weight=weights)
 criterion = nn.CrossEntropyLoss()
 
-print('optimizer = torch.optim.Adagrad(model.parameters(), lr = 0.0001)',file=open(filename, "a"))
-optimizer = torch.optim.Adagrad(model.parameters(), lr = 0.0001)
+print('optimizer = torch.optim.Adagrad(model.parameters(), lr = 0.001)',file=open(filename, "a"))
+optimizer = torch.optim.Adagrad(model.parameters(), lr = 0.001)
 
 
 print('levou {} segundos '.format(time.time() - start_time),file=open(filename, "a"))

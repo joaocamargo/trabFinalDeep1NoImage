@@ -6,66 +6,16 @@ import torch.nn.functional as F
 from torch import nn
 from torchvision import datasets, transforms, models
 
-filename = "resnet50_10e_patience3_sem_peso.txt"
+filename = "TrabalhoDeep1_rayx_alexnet_89_de_100.txt"
 
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 #device = "cpu"
-print(filename,file=open(filename, "a"))
 print(device,file=open(filename, "a"))
 
-import numpy as np
-import torch
-
-class EarlyStopping:
-    """Early stops the training if validation loss doesn't improve after a given patience."""
-    def __init__(self, patience=7, verbose=False, delta=0):
-        """
-        Args:
-            patience (int): How long to wait after last time validation loss improved.
-                            Default: 7
-            verbose (bool): If True, prints a message for each validation loss improvement. 
-                            Default: False
-            delta (float): Minimum change in the monitored quantity to qualify as an improvement.
-                            Default: 0
-        """
-        self.patience = patience
-        self.verbose = verbose
-        self.counter = 0
-        self.best_score = None
-        self.early_stop = False
-        self.val_loss_min = np.Inf
-        self.delta = delta
-
-    def __call__(self, val_loss, model):
-
-        score = -val_loss
-
-        if self.best_score is None:
-            self.best_score = score
-            self.save_checkpoint(val_loss, model)
-        elif score < self.best_score - self.delta:
-            self.counter += 1
-            print(f'EarlyStopping counter: {self.counter} out of {self.patience}')
-            if self.counter >= self.patience:
-                self.early_stop = True
-        else:
-            self.best_score = score
-            self.save_checkpoint(val_loss, model)
-            self.counter = 0
-
-    def save_checkpoint(self, val_loss, model):
-        '''Saves model when validation loss decrease.'''
-        if self.verbose:
-            print(f'Validation loss decreased ({self.val_loss_min:.6f} --> {val_loss:.6f}).  Saving model ...')
-        torch.save(model.state_dict(), 'checkpoint.pt')
-        self.val_loss_min = val_loss
-		
-		
-
 """# Importar dataset"""
+pathXRayImages =  '../../../trabalhoFinalDeep1/chest_xray'
 
-pathXRayImages =  './chest_xray'
 from PIL import Image
 std = []
 PATHTrain = pathXRayImages + '/train/'
@@ -86,23 +36,12 @@ def getitem(self, item):
   img = transform(image) 
   return img, label
 
-classes = (
-    'NORMAL','PNEUMONIA'
-    )
-
+classes = (    'NORMAL','PNEUMONIA'    )
 	
 print('Resize 256',file=open(filename, "a"))
 print('randomcrop 224',file=open(filename, "a"))
 print('batchsize - 100',file=open(filename, "a"))
-print('transforms.RandomHorizontalFlip()',file=open(filename, "a"))
-print('transforms.RandomRotation(10)',file=open(filename, "a"))
-print('transforms.RandomAffine(0,shear=10,scale=(0.8,1.6)),',file=open(filename, "a"))
-print('transforms.ColorJitter(brightness=0.2,contrast=0.2,saturation=0.2),',file=open(filename, "a"))
 
-
-
-
-	
 transform_train = transforms.Compose([transforms.Resize((256,256)),
                                       transforms.RandomCrop(224),
                                       transforms.RandomHorizontalFlip(),
@@ -136,52 +75,52 @@ images,labels = dataiter.next()
 
 #MODEL#MODEL#MODEL#MODEL#MODEL#MODEL#MODEL#MODEL
 
-model = models.resnet50(pretrained=True)
-model.fc = nn.Linear(2048, 2)  
+model = models.alexnet(pretrained=True)
+model
+
+for param in model.features.parameters():
+  param.requires_grad =False
+  
+
+#mudando apenas para duas classes
+n_inputs = model.classifier[6].in_features
+last_layer = nn.Linear(n_inputs,len(classes))
+model.classifier[6] = last_layer
 model.to(device)
+#print(model)
 
-
-########EPOCHS###########
 
 import time
 start_time = time.time()
 
 
-print('sem peso',file=open(filename, "a"))
-#weights = torch.tensor([16.0, 1.0]).to(device)
+#print('weights = torch.tensor([1.0, 16.0]).to(device)',file=open(filename, "a"))
+print('no weights',file=open(filename, "a"))
+#weights = torch.tensor([1.0, 16.0]).to(device)
 #criterion = nn.CrossEntropyLoss(weight=weights)
-criterion = nn.CrossEntropyLoss()
 
-print('optimizer = torch.optim.Adagrad(model.parameters(), lr = 0.001)',file=open(filename, "a"))
+criterion = nn.CrossEntropyLoss()
 optimizer = torch.optim.Adagrad(model.parameters(), lr = 0.001)
+print('optimizer = torch.optim.Adagrad(model.parameters(), lr = 0.001)',file=open(filename, "a"))
 
 
 print('levou {} segundos '.format(time.time() - start_time),file=open(filename, "a"))
 
-
-
-##EPOCHS###########
 import time
 start_time = time.time()
 
-patience = 3
 
-epochs =10
+##EPOCHS###########
+
+print('epochs =15',file=open(filename, "a"))
+
+epochs =15
 
 running_loss_history=[]
 running_corrects_history=[]
 
 val_running_loss_history=[]
 val_running_corrects_history=[]
-
-train_losses = []
-valid_losses = []
-avg_train_losses = []
-avg_valid_losses = [] 
-
-
-early_stopping = EarlyStopping(patience=patience, verbose=True)
-
 
 
 for e in range(epochs):
@@ -202,9 +141,9 @@ for e in range(epochs):
     outputs = model(inputs)
     
     if len(labels) != len(inputs) or len(inputs) != len(outputs):
-      print(len(labels),file=open(filename, "a"))
-      print(len(inputs),file=open(filename, "a"))
-      print(len(outputs),file=open(filename, "a"))
+      print(len(labels))
+      print(len(inputs))
+      print(len(outputs))
     
     loss = criterion(outputs,labels)
     
@@ -212,9 +151,6 @@ for e in range(epochs):
     loss.backward()
     optimizer.step()
     
-    train_losses.append(loss.item())
-
-      
     _,preds = torch.max(outputs,1)    
     running_loss += loss.item()
     running_corrects+= torch.sum(preds == labels.data)    
@@ -230,8 +166,6 @@ for e in range(epochs):
         _,val_preds = torch.max(val_outputs,1)
         val_running_loss += val_loss.item()
         val_running_corrects+= torch.sum(val_preds == val_labels.data)  
-        
-        valid_losses.append(val_loss.item())
       
     epoch_loss = running_loss/len(training_loader.dataset)
     #epoch_loss = calcula o loss function atual
@@ -247,29 +181,13 @@ for e in range(epochs):
     val_running_loss_history.append(val_epoch_loss)    
     val_running_corrects_history.append(val_epoch_acc)    
     
-    train_loss = np.average(train_losses)
-    valid_loss = np.average(valid_losses)
-    avg_train_losses.append(train_loss)
-    avg_valid_losses.append(valid_loss)
-    
     print('epoch: ',str(e+1),file=open(filename, "a"))
     print('train_loss: {:.4f},{:.4f}'.format(epoch_loss,epoch_acc.item()),file=open(filename, "a"))
     print('valid_loss: {:.4f}, \nvalid_acc {:.4f}'.format(val_epoch_loss,val_epoch_acc.item()),file=open(filename, "a"))
     #print('difference between loss:', val_epoch_loss-epoch_loss)
 
-  train_losses = []
-  valid_losses = []
-  
-  early_stopping(valid_loss, model)
-  if early_stopping.early_stop:
-    print("Early stopping")
-    break
-
+    
 print('levou {} segundos '.format(time.time() - start_time),file=open(filename, "a"))
-model.load_state_dict(torch.load('checkpoint.pt'))
-
-
-
 
 dataiter = iter(test_loader)
 images,labels = dataiter.next()
@@ -312,7 +230,11 @@ print(confusion_matrix,file=open(filename, "a"))
 
 print(confusion_matrix.diag()/confusion_matrix.sum(1),file=open(filename, "a"))
 
+#import seaborn as sn
+#import matplotlib.pyplot as plt
 
+#plt.figure(figsize = (10,7))
+#sn.heatmap(confusion_matrix, annot=True,fmt='g')
 
 
 

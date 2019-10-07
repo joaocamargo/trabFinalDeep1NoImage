@@ -6,7 +6,9 @@ import torch.nn.functional as F
 from torch import nn
 from torchvision import datasets, transforms, models
 
-filename = "TrabalhoDeep1_rayx_alexnet_89_de_100.txt"
+import os as os
+filename = os.path.basename(__file__) + ".txt"
+
 
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
@@ -93,13 +95,13 @@ model.to(device)
 import time
 start_time = time.time()
 
+#print('no weights',file=open(filename, "a"))
+#criterion = nn.CrossEntropyLoss()
 
-#print('weights = torch.tensor([1.0, 16.0]).to(device)',file=open(filename, "a"))
-print('no weights',file=open(filename, "a"))
-#weights = torch.tensor([1.0, 16.0]).to(device)
-#criterion = nn.CrossEntropyLoss(weight=weights)
+print('weights = torch.tensor([1.0, 4.0]).to(device)',file=open(filename, "a"))
+weights = torch.tensor([4.0, 1.0]).to(device)
+criterion = nn.CrossEntropyLoss(weight=weights)
 
-criterion = nn.CrossEntropyLoss()
 optimizer = torch.optim.Adagrad(model.parameters(), lr = 0.001)
 print('optimizer = torch.optim.Adagrad(model.parameters(), lr = 0.001)',file=open(filename, "a"))
 
