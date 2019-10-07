@@ -163,9 +163,9 @@ print('levou {} segundos '.format(time.time() - start_time),file=open(filename, 
 import time
 start_time = time.time()
 
-patience = 3
+patience = 1
 
-epochs =10
+epochs =1
 
 running_loss_history=[]
 running_corrects_history=[]

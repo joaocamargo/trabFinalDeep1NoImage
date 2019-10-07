@@ -65,7 +65,7 @@ class EarlyStopping:
 
 """# Importar dataset"""
 
-pathXRayImages =  './chest_xray'
+pathXRayImages =  '../../trabalhoFinalDeep1/chest_xray'
 from PIL import Image
 std = []
 PATHTrain = pathXRayImages + '/train/'
