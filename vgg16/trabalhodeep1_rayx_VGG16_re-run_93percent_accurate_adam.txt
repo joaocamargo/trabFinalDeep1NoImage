@@ -1,0 +1,49 @@
+trabalhodeep1_rayx_VGG16_re-run_93percent_accurate_adam.txt
+cuda:0
+Resize 256
+randomcrop 80
+batchsize - 50
+transforms.RandomHorizontalFlip()
+transforms.RandomRotation(10)
+transforms.RandomAffine(0,shear=10,scale=(0.8,1.6)),
+transforms.ColorJitter(brightness=0.2,contrast=0.2,saturation=0.2),
+105
+1
+13
+sem peso
+optimizer = torch.optim.Adam(model.parameters(), lr = 0.001)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0
+)
+levou 0.0010924339294433594 segundos 
+epoch:  1
+train_loss: 0.0106,0.7571
+valid_loss: 0.0434, 
+valid_acc 0.6250
+epoch:  2
+train_loss: 0.0106,0.7596
+valid_loss: 0.0354, 
+valid_acc 0.6875
+epoch:  3
+train_loss: 0.0106,0.7615
+valid_loss: 0.0379, 
+valid_acc 0.6875
+epoch:  4
+train_loss: 0.0104,0.7623
+valid_loss: 0.0351, 
+valid_acc 0.7500
+epoch:  5
+train_loss: 0.0107,0.7682
+valid_loss: 0.0536, 
+valid_acc 0.5000
+levou 456.82580494880676 segundos 
+acertos: 35 
+erros:15
+tensor([[108., 126.],
+        [ 33., 357.]])
+tensor([0.4615, 0.9154])
