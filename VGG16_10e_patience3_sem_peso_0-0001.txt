@@ -1,0 +1,57 @@
+VGG16_10e_patience3_sem_peso_0-0001.txt
+cuda:0
+Resize 256
+randomcrop 224
+batchsize - 100
+transforms.RandomHorizontalFlip()
+transforms.RandomRotation(10)
+transforms.RandomAffine(0,shear=10,scale=(0.8,1.6)),
+transforms.ColorJitter(brightness=0.2,contrast=0.2,saturation=0.2),
+53
+1
+7
+VGG16_10e_patience3_sem_peso_0-0001.txt
+cuda:0
+Resize 256
+randomcrop 224
+batchsize - 100
+transforms.RandomHorizontalFlip()
+transforms.RandomRotation(10)
+transforms.RandomAffine(0,shear=10,scale=(0.8,1.6)),
+transforms.ColorJitter(brightness=0.2,contrast=0.2,saturation=0.2),
+53
+1
+7
+sem peso
+optimizer = torch.optim.Adagrad(model.parameters(), lr = 0.0001)
+levou 0.002815723419189453 segundos 
+epoch:  1
+train_loss: 0.0059,0.7337
+valid_loss: 0.0526, 
+valid_acc 0.4375
+epoch:  2
+train_loss: 0.0056,0.7431
+valid_loss: 0.0417, 
+valid_acc 0.6250
+epoch:  3
+train_loss: 0.0055,0.7506
+valid_loss: 0.0409, 
+valid_acc 0.6250
+epoch:  4
+train_loss: 0.0053,0.7531
+valid_loss: 0.0470, 
+valid_acc 0.5625
+epoch:  5
+train_loss: 0.0052,0.7588
+valid_loss: 0.0446, 
+valid_acc 0.5000
+epoch:  6
+train_loss: 0.0051,0.7613
+valid_loss: 0.0473, 
+valid_acc 0.5000
+levou 768.2131237983704 segundos 
+acertos: 61 
+erros:39
+tensor([[ 13., 221.],
+        [ 12., 378.]])
+tensor([0.0556, 0.9692])

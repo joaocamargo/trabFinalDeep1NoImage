@@ -1,0 +1,49 @@
+VGG16_10e_patience3_sem_peso.txt
+cuda:0
+Resize 256
+randomcrop 224
+batchsize - 100
+transforms.RandomHorizontalFlip()
+transforms.RandomRotation(10)
+transforms.RandomAffine(0,shear=10,scale=(0.8,1.6)),
+transforms.ColorJitter(brightness=0.2,contrast=0.2,saturation=0.2),
+53
+1
+7
+sem peso
+optimizer = torch.optim.Adagrad(model.parameters(), lr = 0.001)
+levou 0.00372314453125 segundos 
+epoch:  1
+train_loss: 0.0045,0.7958
+valid_loss: 0.0638, 
+valid_acc 0.5000
+epoch:  2
+train_loss: 0.0039,0.8324
+valid_loss: 0.0487, 
+valid_acc 0.5625
+epoch:  3
+train_loss: 0.0037,0.8416
+valid_loss: 0.0436, 
+valid_acc 0.5625
+epoch:  4
+train_loss: 0.0036,0.8405
+valid_loss: 0.0362, 
+valid_acc 0.6875
+epoch:  5
+train_loss: 0.0035,0.8432
+valid_loss: 0.0443, 
+valid_acc 0.6250
+epoch:  6
+train_loss: 0.0034,0.8554
+valid_loss: 0.0415, 
+valid_acc 0.6250
+epoch:  7
+train_loss: 0.0034,0.8556
+valid_loss: 0.0421, 
+valid_acc 0.6875
+levou 982.1609408855438 segundos 
+acertos: 69 
+erros:31
+tensor([[120., 114.],
+        [ 41., 349.]])
+tensor([0.5128, 0.8949])

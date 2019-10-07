@@ -1,0 +1,49 @@
+VGG16_10e_patience3_16_1.txt
+cuda:0
+Resize 256
+randomcrop 224
+batchsize - 100
+transforms.RandomHorizontalFlip()
+transforms.RandomRotation(10)
+transforms.RandomAffine(0,shear=10,scale=(0.8,1.6)),
+transforms.ColorJitter(brightness=0.2,contrast=0.2,saturation=0.2),
+53
+1
+7
+VGG16_10e_patience3_16_1.txt
+cuda:0
+Resize 256
+randomcrop 224
+batchsize - 100
+transforms.RandomHorizontalFlip()
+transforms.RandomRotation(10)
+transforms.RandomAffine(0,shear=10,scale=(0.8,1.6)),
+transforms.ColorJitter(brightness=0.2,contrast=0.2,saturation=0.2),
+53
+1
+7
+weights = torch.tensor([16.0, 1.0]).to(device)
+optimizer = torch.optim.Adagrad(model.parameters(), lr = 0.001)
+levou 0.002922534942626953 segundos 
+epoch:  1
+train_loss: 0.0036,0.3441
+valid_loss: 0.0181, 
+valid_acc 0.5000
+epoch:  2
+train_loss: 0.0031,0.4626
+valid_loss: 0.0298, 
+valid_acc 0.6250
+epoch:  3
+train_loss: 0.0028,0.5424
+valid_loss: 0.0263, 
+valid_acc 0.7500
+epoch:  4
+train_loss: 0.0027,0.5665
+valid_loss: 0.0222, 
+valid_acc 0.6875
+levou 509.0937762260437 segundos 
+acertos: 46 
+erros:54
+tensor([[231.,   3.],
+        [342.,  48.]])
+tensor([0.9872, 0.1231])

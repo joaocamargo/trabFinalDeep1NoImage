@@ -1,0 +1,15 @@
+resnet50_10e_patience3_sem_peso_batch64.txt
+cuda:0
+Resize 256
+randomcrop 224
+batchsize - 64
+transforms.RandomHorizontalFlip()
+transforms.RandomRotation(10)
+transforms.RandomAffine(0,shear=10,scale=(0.8,1.6)),
+transforms.ColorJitter(brightness=0.2,contrast=0.2,saturation=0.2),
+82
+1
+10
+sem peso
+optimizer = torch.optim.Adagrad(model.parameters(), lr = 0.0001)
+levou 0.0054056644439697266 segundos 
