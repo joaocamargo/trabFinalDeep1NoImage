@@ -37,3 +37,71 @@ erros:21
 tensor([[158.,  76.],
         [ 46., 344.]])
 tensor([0.6752, 0.8821])
+trabalhodeep1_rayx_resnet50_batch100_simples_REMOVIDO_PRE_TREINO_MODIFICAD_addPeso.txt
+cuda:0
+Resize 192
+randomcrop 160 
+batchsize - 100
+transforms.RandomHorizontalFlip()
+transforms.RandomRotation(10)
+transforms.RandomAffine(0,shear=10,scale=(0.8,1.6)),
+transforms.ColorJitter(brightness=0.2,contrast=0.2,saturation=0.2),
+53
+1
+7
+tensor([8., 1.], device='cuda:0')
+Adagrad (
+Parameter Group 0
+    initial_accumulator_value: 0
+    lr: 0.001
+    lr_decay: 0
+    weight_decay: 0
+)
+CrossEntropyLoss()
+levou 0.013496160507202148 segundos 
+epoch:  1
+train_loss: 0.0060,0.5736
+valid_loss: 0.0288, 
+valid_acc 0.6250
+epoch:  2
+train_loss: 0.0033,0.7433
+valid_loss: 0.0776, 
+valid_acc 0.6250
+epoch:  3
+train_loss: 0.0030,0.7855
+valid_loss: 0.1037, 
+valid_acc 0.5000
+epoch:  4
+train_loss: 0.0027,0.8079
+valid_loss: 0.1337, 
+valid_acc 0.5625
+epoch:  5
+train_loss: 0.0025,0.8257
+valid_loss: 0.1396, 
+valid_acc 0.5625
+epoch:  6
+train_loss: 0.0024,0.8351
+valid_loss: 0.0960, 
+valid_acc 0.6250
+epoch:  7
+train_loss: 0.0024,0.8374
+valid_loss: 0.0769, 
+valid_acc 0.6250
+epoch:  8
+train_loss: 0.0023,0.8367
+valid_loss: 0.1300, 
+valid_acc 0.5625
+epoch:  9
+train_loss: 0.0022,0.8524
+valid_loss: 0.1202, 
+valid_acc 0.6250
+epoch:  10
+train_loss: 0.0021,0.8610
+valid_loss: 0.1231, 
+valid_acc 0.5000
+levou 1165.0692811012268 segundos 
+acertos: 82 
+erros:18
+tensor([[146.,  88.],
+        [ 46., 344.]])
+tensor([0.6239, 0.8821])
