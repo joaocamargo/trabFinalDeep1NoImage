@@ -28,3 +28,36 @@ valid_acc 0.7500
 levou 379.7110140323639 segundos 
 acertos: 88 
 erros:12
+trabalhodeep1_rayx_resnet50_batch100_simples_COMTREINO_224.txt
+cuda:0
+Resize 192
+randomcrop 160 
+batchsize - 100
+transforms.RandomHorizontalFlip()
+transforms.RandomRotation(10)
+transforms.RandomAffine(0,shear=10,scale=(0.8,1.6)),
+transforms.ColorJitter(brightness=0.2,contrast=0.2,saturation=0.2),
+53
+1
+7
+sem peso
+optimizer = torch.optim.Adagrad(model.parameters(), lr = 0.001)
+levou 0.004764556884765625 segundos 
+epoch:  1
+train_loss: 0.0026,0.8957
+valid_loss: 0.0522, 
+valid_acc 0.7500
+epoch:  2
+train_loss: 0.0010,0.9622
+valid_loss: 0.0643, 
+valid_acc 0.7500
+epoch:  3
+train_loss: 0.0009,0.9684
+valid_loss: 0.0484, 
+valid_acc 0.7500
+levou 349.70346903800964 segundos 
+acertos: 88 
+erros:12
+tensor([[183.,  51.],
+        [  5., 385.]])
+tensor([0.7821, 0.9872])

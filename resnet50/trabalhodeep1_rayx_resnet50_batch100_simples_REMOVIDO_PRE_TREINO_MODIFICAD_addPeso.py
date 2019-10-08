@@ -6,7 +6,7 @@ import torch.nn.functional as F
 from torch import nn
 from torchvision import datasets, transforms, models
 
-filename = "trabalhodeep1_rayx_resnet50_batch100_simples_COMTREINO_224.txt"
+filename = "trabalhodeep1_rayx_resnet50_batch100_simples_REMOVIDO_PRE_TREINO_MODIFICAD_addPeso.txt"
 
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
@@ -136,7 +136,7 @@ images,labels = dataiter.next()
 
 #MODEL#MODEL#MODEL#MODEL#MODEL#MODEL#MODEL#MODEL
 
-model = models.resnet50(pretrained=True)
+model = models.resnet50(pretrained=False)
 model.fc = nn.Linear(2048, 2)  
 model.to(device)
 
@@ -147,13 +147,15 @@ import time
 start_time = time.time()
 
 
-print('sem peso',file=open(filename, "a"))
-#weights = torch.tensor([16.0, 1.0]).to(device)
-#criterion = nn.CrossEntropyLoss(weight=weights)
-criterion = nn.CrossEntropyLoss()
+#print('sem peso',file=open(filename, "a"))
+weights = torch.tensor([8.0, 1.0]).to(device)
+criterion = nn.CrossEntropyLoss(weight=weights)
+#criterion = nn.CrossEntropyLoss()
 
-print('optimizer = torch.optim.Adagrad(model.parameters(), lr = 0.001)',file=open(filename, "a"))
 optimizer = torch.optim.Adagrad(model.parameters(), lr = 0.001)
+print(weights,file=open(filename, "a"))
+print(optimizer,file=open(filename, "a"))
+print(criterion,file=open(filename, "a"))
 
 
 print('levou {} segundos '.format(time.time() - start_time),file=open(filename, "a"))
@@ -164,9 +166,9 @@ print('levou {} segundos '.format(time.time() - start_time),file=open(filename, 
 import time
 start_time = time.time()
 
-patience = 3
+patience = 10
 
-epochs =3
+epochs =10
 
 running_loss_history=[]
 running_corrects_history=[]

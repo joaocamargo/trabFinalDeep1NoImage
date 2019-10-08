@@ -1,0 +1,39 @@
+trabalhodeep1_rayx_resnet50_batch100_simples_REMOVIDO_PRE_TREINO_MODIFICAD_addPeso.txt
+cuda:0
+Resize 192
+randomcrop 160 
+batchsize - 100
+transforms.RandomHorizontalFlip()
+transforms.RandomRotation(10)
+transforms.RandomAffine(0,shear=10,scale=(0.8,1.6)),
+transforms.ColorJitter(brightness=0.2,contrast=0.2,saturation=0.2),
+53
+1
+7
+Adagrad (
+Parameter Group 0
+    initial_accumulator_value: 0
+    lr: 0.001
+    lr_decay: 0
+    weight_decay: 0
+)
+CrossEntropyLoss()
+levou 0.0050487518310546875 segundos 
+epoch:  1
+train_loss: 0.0061,0.6008
+valid_loss: 0.0416, 
+valid_acc 0.6250
+epoch:  2
+train_loss: 0.0035,0.7475
+valid_loss: 0.0578, 
+valid_acc 0.6250
+epoch:  3
+train_loss: 0.0031,0.7753
+valid_loss: 0.0474, 
+valid_acc 0.6250
+levou 349.50287199020386 segundos 
+acertos: 79 
+erros:21
+tensor([[158.,  76.],
+        [ 46., 344.]])
+tensor([0.6752, 0.8821])
