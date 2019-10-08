@@ -6,7 +6,7 @@ import torch.nn.functional as F
 from torch import nn
 from torchvision import datasets, transforms, models
 
-filename = "trabalhodeep1_rayx_resnet50_batch100_simples_SEMTREINO.txt"
+filename = "trabalhodeep1_rayx_resnet50_batch100_simples_REMOVIDO_PRE_TREINO_MODIFICAD_addPeso.txt"
 
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
@@ -91,8 +91,8 @@ classes = (
     )
 
 	
-print('Resize 256',file=open(filename, "a"))
-print('randomcrop 224',file=open(filename, "a"))
+print('Resize 192',file=open(filename, "a"))
+print('randomcrop 160 ',file=open(filename, "a"))
 print('batchsize - 100',file=open(filename, "a"))
 print('transforms.RandomHorizontalFlip()',file=open(filename, "a"))
 print('transforms.RandomRotation(10)',file=open(filename, "a"))
@@ -103,8 +103,8 @@ print('transforms.ColorJitter(brightness=0.2,contrast=0.2,saturation=0.2),',file
 
 
 	
-transform_train = transforms.Compose([transforms.Resize((256,256)),
-                                      transforms.RandomCrop(224),
+transform_train = transforms.Compose([transforms.Resize((192,192)),
+                                      transforms.RandomCrop(160),
                                       transforms.RandomHorizontalFlip(),
                                       transforms.RandomRotation(10),
                                       transforms.RandomAffine(0,shear=10,scale=(0.8,1.6)),
@@ -113,7 +113,7 @@ transform_train = transforms.Compose([transforms.Resize((256,256)),
                                       transforms.Normalize([0.5,0.5,0.5],[0.5,0.5,0.5])])
 
 
-transform = transforms.Compose([transforms.Resize((256,256)),
+transform = transforms.Compose([transforms.Resize((192,192)),
                                 transforms.ToTensor(),
                                  transforms.Normalize([0.5,0.5,0.5],[0.5,0.5,0.5])])
 
@@ -136,7 +136,7 @@ images,labels = dataiter.next()
 
 #MODEL#MODEL#MODEL#MODEL#MODEL#MODEL#MODEL#MODEL
 
-model = models.resnet50(pretrained=True)
+model = models.resnet50(pretrained=False)
 model.fc = nn.Linear(2048, 2)  
 model.to(device)
 
@@ -147,13 +147,15 @@ import time
 start_time = time.time()
 
 
-print('sem peso',file=open(filename, "a"))
-#weights = torch.tensor([16.0, 1.0]).to(device)
-#criterion = nn.CrossEntropyLoss(weight=weights)
-criterion = nn.CrossEntropyLoss()
+#print('sem peso',file=open(filename, "a"))
+weights = torch.tensor([8.0, 1.0]).to(device)
+criterion = nn.CrossEntropyLoss(weight=weights)
+#criterion = nn.CrossEntropyLoss()
 
-print('optimizer = torch.optim.Adagrad(model.parameters(), lr = 0.001)',file=open(filename, "a"))
 optimizer = torch.optim.Adagrad(model.parameters(), lr = 0.001)
+print(weights,file=open(filename, "a"))
+print(optimizer,file=open(filename, "a"))
+print(criterion,file=open(filename, "a"))
 
 
 print('levou {} segundos '.format(time.time() - start_time),file=open(filename, "a"))
@@ -164,9 +166,9 @@ print('levou {} segundos '.format(time.time() - start_time),file=open(filename, 
 import time
 start_time = time.time()
 
-patience = 3
+patience = 10
 
-epochs =3
+epochs =10
 
 running_loss_history=[]
 running_corrects_history=[]

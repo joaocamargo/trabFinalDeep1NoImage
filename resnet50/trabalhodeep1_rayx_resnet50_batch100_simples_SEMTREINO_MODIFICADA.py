@@ -6,7 +6,7 @@ import torch.nn.functional as F
 from torch import nn
 from torchvision import datasets, transforms, models
 
-filename = "trabalhodeep1_rayx_resnet50_batch100_simples_SEMTREINO.txt"
+filename = "trabalhodeep1_rayx_resnet50_batch100_simples_COMTREINO_224.txt"
 
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
@@ -91,8 +91,8 @@ classes = (
     )
 
 	
-print('Resize 256',file=open(filename, "a"))
-print('randomcrop 224',file=open(filename, "a"))
+print('Resize 192',file=open(filename, "a"))
+print('randomcrop 160 ',file=open(filename, "a"))
 print('batchsize - 100',file=open(filename, "a"))
 print('transforms.RandomHorizontalFlip()',file=open(filename, "a"))
 print('transforms.RandomRotation(10)',file=open(filename, "a"))
@@ -103,8 +103,8 @@ print('transforms.ColorJitter(brightness=0.2,contrast=0.2,saturation=0.2),',file
 
 
 	
-transform_train = transforms.Compose([transforms.Resize((256,256)),
-                                      transforms.RandomCrop(224),
+transform_train = transforms.Compose([transforms.Resize((192,192)),
+                                      transforms.RandomCrop(160),
                                       transforms.RandomHorizontalFlip(),
                                       transforms.RandomRotation(10),
                                       transforms.RandomAffine(0,shear=10,scale=(0.8,1.6)),
@@ -113,7 +113,7 @@ transform_train = transforms.Compose([transforms.Resize((256,256)),
                                       transforms.Normalize([0.5,0.5,0.5],[0.5,0.5,0.5])])
 
 
-transform = transforms.Compose([transforms.Resize((256,256)),
+transform = transforms.Compose([transforms.Resize((192,192)),
                                 transforms.ToTensor(),
                                  transforms.Normalize([0.5,0.5,0.5],[0.5,0.5,0.5])])
 

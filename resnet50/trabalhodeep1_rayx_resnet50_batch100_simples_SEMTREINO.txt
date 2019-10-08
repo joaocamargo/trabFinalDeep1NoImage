@@ -54,3 +54,154 @@ train_loss: 0.0004,0.9872
 valid_loss: 0.0168, 
 valid_acc 0.8750
 levou 1363.7885825634003 segundos 
+trabalhodeep1_rayx_resnet50_batch100_simples_SEMTREINO.txt
+cuda:0
+Resize 256
+randomcrop 224
+batchsize - 100
+transforms.RandomHorizontalFlip()
+transforms.RandomRotation(10)
+transforms.RandomAffine(0,shear=10,scale=(0.8,1.6)),
+transforms.ColorJitter(brightness=0.2,contrast=0.2,saturation=0.2),
+53
+1
+7
+sem peso
+optimizer = torch.optim.Adagrad(model.parameters(), lr = 0.001)
+levou 0.004854679107666016 segundos 
+epoch:  1
+train_loss: 0.0018,0.9210
+valid_loss: 0.0416, 
+valid_acc 0.7500
+epoch:  2
+train_loss: 0.0009,0.9668
+valid_loss: 0.0419, 
+valid_acc 0.6875
+epoch:  3
+train_loss: 0.0008,0.9728
+valid_loss: 0.0343, 
+valid_acc 0.7500
+epoch:  4
+train_loss: 0.0006,0.9770
+valid_loss: 0.0357, 
+valid_acc 0.8750
+epoch:  5
+train_loss: 0.0006,0.9787
+valid_loss: 0.0363, 
+valid_acc 0.8750
+epoch:  6
+train_loss: 0.0005,0.9839
+valid_loss: 0.0407, 
+valid_acc 0.8125
+epoch:  7
+train_loss: 0.0004,0.9833
+valid_loss: 0.0298, 
+valid_acc 0.8750
+trabalhodeep1_rayx_resnet50_batch100_simples_SEMTREINO.txt
+cuda:0
+Resize 256
+randomcrop 224
+batchsize - 100
+transforms.RandomHorizontalFlip()
+transforms.RandomRotation(10)
+transforms.RandomAffine(0,shear=10,scale=(0.8,1.6)),
+transforms.ColorJitter(brightness=0.2,contrast=0.2,saturation=0.2),
+53
+1
+7
+sem peso
+optimizer = torch.optim.Adagrad(model.parameters(), lr = 0.001)
+levou 0.004744768142700195 segundos 
+epoch:  1
+train_loss: 0.0023,0.9072
+valid_loss: 0.0491, 
+valid_acc 0.7500
+epoch:  2
+train_loss: 0.0009,0.9645
+valid_loss: 0.0380, 
+valid_acc 0.7500
+epoch:  3
+train_loss: 0.0008,0.9720
+valid_loss: 0.0342, 
+valid_acc 0.8125
+epoch:  4
+train_loss: 0.0006,0.9768
+valid_loss: 0.0228, 
+valid_acc 0.9375
+epoch:  5
+train_loss: 0.0006,0.9778
+valid_loss: 0.0362, 
+valid_acc 0.7500
+epoch:  6
+train_loss: 0.0005,0.9818
+valid_loss: 0.0497, 
+valid_acc 0.6875
+epoch:  7
+train_loss: 0.0005,0.9829
+valid_loss: 0.0368, 
+valid_acc 0.7500
+levou 955.2221653461456 segundos 
+trabalhodeep1_rayx_resnet50_batch100_simples_SEMTREINO.txt
+cuda:0
+Resize 256
+randomcrop 224
+batchsize - 100
+transforms.RandomHorizontalFlip()
+transforms.RandomRotation(10)
+transforms.RandomAffine(0,shear=10,scale=(0.8,1.6)),
+transforms.ColorJitter(brightness=0.2,contrast=0.2,saturation=0.2),
+53
+1
+7
+sem peso
+optimizer = torch.optim.Adagrad(model.parameters(), lr = 0.001)
+levou 0.00496983528137207 segundos 
+epoch:  1
+train_loss: 0.0020,0.9243
+valid_loss: 0.0789, 
+valid_acc 0.6250
+epoch:  2
+train_loss: 0.0009,0.9674
+valid_loss: 0.0452, 
+valid_acc 0.7500
+epoch:  3
+train_loss: 0.0008,0.9726
+valid_loss: 0.0310, 
+valid_acc 0.8125
+epoch:  4
+train_loss: 0.0006,0.9789
+valid_loss: 0.0259, 
+valid_acc 0.8750
+epoch:  5
+train_loss: 0.0006,0.9787
+valid_loss: 0.0266, 
+valid_acc 0.8750
+levou 679.691132068634 segundos 
+trabalhodeep1_rayx_resnet50_batch100_simples_SEMTREINO.txt
+cuda:0
+Resize 256
+randomcrop 224
+batchsize - 100
+transforms.RandomHorizontalFlip()
+transforms.RandomRotation(10)
+transforms.RandomAffine(0,shear=10,scale=(0.8,1.6)),
+transforms.ColorJitter(brightness=0.2,contrast=0.2,saturation=0.2),
+53
+1
+7
+sem peso
+optimizer = torch.optim.Adagrad(model.parameters(), lr = 0.001)
+levou 0.005054950714111328 segundos 
+epoch:  1
+train_loss: 0.0021,0.9183
+valid_loss: 0.0638, 
+valid_acc 0.6250
+epoch:  2
+train_loss: 0.0009,0.9682
+valid_loss: 0.0588, 
+valid_acc 0.6875
+epoch:  3
+train_loss: 0.0007,0.9760
+valid_loss: 0.0480, 
+valid_acc 0.7500
+levou 410.41589760780334 segundos 
