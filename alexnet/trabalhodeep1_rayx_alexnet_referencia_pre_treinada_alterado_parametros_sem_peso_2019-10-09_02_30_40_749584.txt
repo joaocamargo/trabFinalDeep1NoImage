@@ -1,0 +1,200 @@
+cuda:0
+imagens Treino53
+imagens Validacao1
+imagens Teste7
+Compose(
+    Resize(size=(256, 256), interpolation=PIL.Image.BILINEAR)
+    RandomCrop(size=(224, 224), padding=None)
+    RandomHorizontalFlip(p=0.5)
+    RandomRotation(degrees=(-5, 5), resample=False, expand=False)
+    RandomAffine(degrees=(0, 0), scale=(0.4, 2.1), shear=(-5, 5))
+    ColorJitter(brightness=[0.6, 1.4], contrast=[0.6, 1.4], saturation=[0.6, 1.4], hue=None)
+    ToTensor()
+    Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])
+)
+----------
+Compose(
+    Resize(size=(256, 256), interpolation=PIL.Image.BILINEAR)
+    ToTensor()
+    Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])
+)
+Pre treinado: True
+------------
+weights-sempeso
+CrossEntropyLoss()
+Adagrad (
+Parameter Group 0
+    initial_accumulator_value: 0
+    lr: 0.001
+    lr_decay: 0
+    weight_decay: 0
+)
+------------
+levou 0.0018672943115234375 segundos 
+epochs =40
+epoch:  1
+train_loss: 0.0045,0.8432
+valid_loss: 0.0341, 
+valid_acc 0.6875
+epoch:  2
+train_loss: 0.0025,0.8984
+valid_loss: 0.0356, 
+valid_acc 0.6250
+epoch:  3
+train_loss: 0.0022,0.9158
+valid_loss: 0.0188, 
+valid_acc 0.9375
+epoch:  4
+train_loss: 0.0020,0.9237
+valid_loss: 0.0275, 
+valid_acc 0.7500
+epoch:  5
+train_loss: 0.0020,0.9189
+valid_loss: 0.0528, 
+valid_acc 0.7500
+epoch:  6
+train_loss: 0.0020,0.9176
+valid_loss: 0.0240, 
+valid_acc 0.7500
+epoch:  7
+train_loss: 0.0018,0.9317
+valid_loss: 0.0141, 
+valid_acc 0.8750
+epoch:  8
+train_loss: 0.0018,0.9339
+valid_loss: 0.0205, 
+valid_acc 0.8125
+epoch:  9
+train_loss: 0.0018,0.9325
+valid_loss: 0.0237, 
+valid_acc 0.7500
+epoch:  10
+train_loss: 0.0017,0.9310
+valid_loss: 0.0208, 
+valid_acc 0.8750
+epoch:  11
+train_loss: 0.0017,0.9342
+valid_loss: 0.0373, 
+valid_acc 0.6875
+epoch:  12
+train_loss: 0.0017,0.9383
+valid_loss: 0.0261, 
+valid_acc 0.8125
+epoch:  13
+train_loss: 0.0017,0.9321
+valid_loss: 0.0179, 
+valid_acc 0.9375
+epoch:  14
+train_loss: 0.0016,0.9404
+valid_loss: 0.0447, 
+valid_acc 0.6250
+epoch:  15
+train_loss: 0.0016,0.9406
+valid_loss: 0.0307, 
+valid_acc 0.6250
+epoch:  16
+train_loss: 0.0017,0.9329
+valid_loss: 0.0270, 
+valid_acc 0.7500
+epoch:  17
+train_loss: 0.0016,0.9352
+valid_loss: 0.0243, 
+valid_acc 0.8125
+epoch:  18
+train_loss: 0.0015,0.9408
+valid_loss: 0.0178, 
+valid_acc 0.8750
+epoch:  19
+train_loss: 0.0015,0.9404
+valid_loss: 0.0145, 
+valid_acc 1.0000
+epoch:  20
+train_loss: 0.0015,0.9433
+valid_loss: 0.0385, 
+valid_acc 0.6875
+epoch:  21
+train_loss: 0.0015,0.9387
+valid_loss: 0.0201, 
+valid_acc 0.8750
+epoch:  22
+train_loss: 0.0015,0.9436
+valid_loss: 0.0221, 
+valid_acc 0.7500
+epoch:  23
+train_loss: 0.0016,0.9411
+valid_loss: 0.0287, 
+valid_acc 0.7500
+epoch:  24
+train_loss: 0.0015,0.9413
+valid_loss: 0.0202, 
+valid_acc 0.8125
+epoch:  25
+train_loss: 0.0015,0.9398
+valid_loss: 0.0118, 
+valid_acc 0.9375
+epoch:  26
+train_loss: 0.0015,0.9425
+valid_loss: 0.0147, 
+valid_acc 0.8750
+epoch:  27
+train_loss: 0.0015,0.9415
+valid_loss: 0.0107, 
+valid_acc 0.9375
+epoch:  28
+train_loss: 0.0016,0.9363
+valid_loss: 0.0185, 
+valid_acc 0.8125
+epoch:  29
+train_loss: 0.0015,0.9442
+valid_loss: 0.0183, 
+valid_acc 0.8125
+epoch:  30
+train_loss: 0.0015,0.9425
+valid_loss: 0.0190, 
+valid_acc 0.9375
+epoch:  31
+train_loss: 0.0016,0.9363
+valid_loss: 0.0377, 
+valid_acc 0.6875
+epoch:  32
+train_loss: 0.0015,0.9425
+valid_loss: 0.0385, 
+valid_acc 0.6250
+epoch:  33
+train_loss: 0.0014,0.9444
+valid_loss: 0.0143, 
+valid_acc 0.8750
+epoch:  34
+train_loss: 0.0014,0.9450
+valid_loss: 0.0143, 
+valid_acc 0.9375
+epoch:  35
+train_loss: 0.0014,0.9469
+valid_loss: 0.0171, 
+valid_acc 0.8750
+epoch:  36
+train_loss: 0.0014,0.9454
+valid_loss: 0.0134, 
+valid_acc 0.8750
+epoch:  37
+train_loss: 0.0014,0.9465
+valid_loss: 0.0099, 
+valid_acc 1.0000
+epoch:  38
+train_loss: 0.0014,0.9477
+valid_loss: 0.0199, 
+valid_acc 0.8125
+epoch:  39
+train_loss: 0.0014,0.9446
+valid_loss: 0.0168, 
+valid_acc 0.9375
+epoch:  40
+train_loss: 0.0015,0.9465
+valid_loss: 0.0347, 
+valid_acc 0.6875
+levou 4665.262149810791 segundos 
+acertos: 95 
+erros:5
+tensor([[200.,  34.],
+        [ 20., 370.]])
+tensor([0.8547, 0.9487])
