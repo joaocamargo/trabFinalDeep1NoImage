@@ -1,0 +1,68 @@
+cuda:0
+imagens Treino53
+imagens Validacao1
+imagens Teste7
+Compose(
+    Resize(size=(256, 256), interpolation=PIL.Image.BILINEAR)
+    RandomCrop(size=(224, 224), padding=None)
+    RandomHorizontalFlip(p=0.5)
+    RandomRotation(degrees=(-10, 10), resample=False, expand=False)
+    RandomAffine(degrees=(0, 0), scale=(0.8, 1.6), shear=(-10, 10))
+    ColorJitter(brightness=[0.8, 1.2], contrast=[0.8, 1.2], saturation=[0.8, 1.2], hue=None)
+    ToTensor()
+    Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])
+)
+----------
+Compose(
+    Resize(size=(256, 256), interpolation=PIL.Image.BILINEAR)
+    ToTensor()
+    Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])
+)
+Pre treinado: False
+------------
+tensor([2.8800, 1.0000], device='cuda:0')
+CrossEntropyLoss()
+Adagrad (
+Parameter Group 0
+    initial_accumulator_value: 0
+    lr: 0.001
+    lr_decay: 0
+    weight_decay: 0
+)
+------------
+levou 0.0037899017333984375 segundos 
+epochs =7
+epoch:  1
+train_loss: 0.0067,0.5932
+valid_loss: 0.0648, 
+valid_acc 0.5000
+epoch:  2
+train_loss: 0.0056,0.7350
+valid_loss: 0.0811, 
+valid_acc 0.5625
+epoch:  3
+train_loss: 0.0051,0.7676
+valid_loss: 0.0762, 
+valid_acc 0.6250
+epoch:  4
+train_loss: 0.0048,0.7724
+valid_loss: 0.0570, 
+valid_acc 0.6250
+epoch:  5
+train_loss: 0.0047,0.7816
+valid_loss: 0.0552, 
+valid_acc 0.5625
+epoch:  6
+train_loss: 0.0043,0.8069
+valid_loss: 0.1129, 
+valid_acc 0.6250
+epoch:  7
+train_loss: 0.0046,0.7929
+valid_loss: 0.0354, 
+valid_acc 0.5000
+levou 817.6452493667603 segundos 
+acertos: 46 
+erros:54
+tensor([[234.,   0.],
+        [345.,  45.]])
+tensor([1.0000, 0.1154])
