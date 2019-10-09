@@ -110,7 +110,7 @@ optimizer = torch.optim.Adagrad(model.parameters(), lr = 0.001)
 
 print('------------',file=open(filename, "a"))
 
-print(weights,file=open(filename, "a"))
+print('weights-sempeso',file=open(filename, "a"))
 print(criterion,file=open(filename, "a"))
 print(optimizer,file=open(filename, "a"))
 

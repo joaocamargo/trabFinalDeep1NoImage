@@ -1,0 +1,64 @@
+cuda:0
+imagens Treino53
+imagens Validacao1
+imagens Teste7
+Compose(
+    Resize(size=(256, 256), interpolation=PIL.Image.BILINEAR)
+    RandomCrop(size=(224, 224), padding=None)
+    ToTensor()
+    Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])
+)
+----------
+Compose(
+    Resize(size=(256, 256), interpolation=PIL.Image.BILINEAR)
+    ToTensor()
+    Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])
+)
+Pre treinado: True
+------------
+weights-sempeso
+CrossEntropyLoss()
+Adagrad (
+Parameter Group 0
+    initial_accumulator_value: 0
+    lr: 0.001
+    lr_decay: 0
+    weight_decay: 0
+)
+------------
+levou 0.0018935203552246094 segundos 
+epochs =7
+epoch:  1
+train_loss: 0.0038,0.8934
+valid_loss: 0.0157, 
+valid_acc 0.8750
+epoch:  2
+train_loss: 0.0010,0.9620
+valid_loss: 0.0075, 
+valid_acc 0.9375
+epoch:  3
+train_loss: 0.0009,0.9688
+valid_loss: 0.0342, 
+valid_acc 0.6875
+epoch:  4
+train_loss: 0.0009,0.9684
+valid_loss: 0.0112, 
+valid_acc 0.9375
+epoch:  5
+train_loss: 0.0007,0.9730
+valid_loss: 0.0204, 
+valid_acc 0.8125
+epoch:  6
+train_loss: 0.0007,0.9747
+valid_loss: 0.0090, 
+valid_acc 0.9375
+epoch:  7
+train_loss: 0.0007,0.9743
+valid_loss: 0.0126, 
+valid_acc 0.9375
+levou 743.9529318809509 segundos 
+acertos: 90 
+erros:10
+tensor([[214.,  20.],
+        [ 58., 332.]])
+tensor([0.9145, 0.8513])
