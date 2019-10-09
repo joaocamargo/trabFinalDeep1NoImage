@@ -9,10 +9,10 @@ import os as os
 
 import datetime
 datetime_object = datetime.datetime.now()
-executionTime = = str(datetime_object).replace(":", "_").replace(' ','_').replace('.','_')
+executionTime  = str(datetime_object).replace(":", "_").replace(' ','_').replace('.','_')
 
 
-filename = os.path.basename(__file__) + executionTime + ".txt"
+filename = os.path.basename(__file__).replace('.py','_') + executionTime + ".txt"
 
 
 
@@ -72,9 +72,9 @@ test_dataset = datasets.ImageFolder(root=PATHTest,transform=transform)
 test_loader = torch.utils.data.DataLoader(dataset=test_dataset,batch_size=100,shuffle=True)
 
 
-print('imagens Treino' + len(training_loader),file=open(filename, "a"))
-print('imagens Validacao' + len(validation_loader),file=open(filename, "a"))
-print('imagens Teste' + len(test_loader),file=open(filename, "a"))
+print('imagens Treino' + str(len(training_loader)),file=open(filename, "a"))
+print('imagens Validacao' + str(len(validation_loader)),file=open(filename, "a"))
+print('imagens Teste' + str(len(test_loader)),file=open(filename, "a"))
 
 
 print(transform_train,file=open(filename, "a"))
@@ -86,8 +86,8 @@ images,labels = dataiter.next()
 
 #MODEL#MODEL#MODEL#MODEL#MODEL#MODEL#MODEL#MODEL
 
-prettrain=True
-print('Pre treinado: '+prettrain,file=open(filename, "a"))
+prettrain=False
+print('Pre treinado: '+str(prettrain),file=open(filename, "a"))
 
 model = models.alexnet(pretrained=prettrain)
 model
@@ -126,6 +126,7 @@ start_time = time.time()
 
 ##EPOCHS###########
 
+
 epochs =7
 
 print('epochs =' + str(epochs),file=open(filename, "a"))
@@ -139,7 +140,7 @@ val_running_corrects_history=[]
 
 
 for e in range(epochs):
-  
+  print(str(e),'/',str(epochs))
   #if e == 6:
    # print('trocando lr de 0,01 para 0,001')
    # optimizer = torch.optim.Adam(model.parameters(), lr = 0.001)
