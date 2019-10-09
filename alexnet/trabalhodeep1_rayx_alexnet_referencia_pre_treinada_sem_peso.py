@@ -62,6 +62,9 @@ transform = transforms.Compose([transforms.Resize((256,256)),
                                 transforms.ToTensor(),
                                  transforms.Normalize([0.5,0.5,0.5],[0.5,0.5,0.5])])
 
+print('batch - 100',file=open(filename, "a"))
+
+
 training_dataset = datasets.ImageFolder(root=PATHTrain,transform=transform_train)
 validation_dataset = datasets.ImageFolder(root=PATHVal,transform=transform)
 training_loader = torch.utils.data.DataLoader(dataset=training_dataset,batch_size=100,shuffle=True)
@@ -114,7 +117,7 @@ optimizer = torch.optim.Adagrad(model.parameters(), lr = 0.001)
 
 print('------------',file=open(filename, "a"))
 
-print(weights,file=open(filename, "a"))
+print('weights-sempeso',file=open(filename, "a"))
 print(criterion,file=open(filename, "a"))
 print(optimizer,file=open(filename, "a"))
 
