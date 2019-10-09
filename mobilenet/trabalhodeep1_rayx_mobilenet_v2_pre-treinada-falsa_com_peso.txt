@@ -1,0 +1,64 @@
+cuda:0
+Resize 256
+randomcrop 224
+batchsize - 100
+105
+1
+13
+CrossEntropyLoss()
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0
+)
+levou 0.0013146400451660156 segundos 
+epochs =10
+epoch:  1
+train_loss: 0.0129,0.6620
+valid_loss: 0.0548, 
+valid_acc 0.6250
+epoch:  2
+train_loss: 0.0119,0.6931
+valid_loss: 0.0349, 
+valid_acc 0.7500
+epoch:  3
+train_loss: 0.0123,0.6685
+valid_loss: 0.0495, 
+valid_acc 0.6250
+epoch:  4
+train_loss: 0.0118,0.6979
+valid_loss: 0.0397, 
+valid_acc 0.8125
+epoch:  5
+train_loss: 0.0115,0.7021
+valid_loss: 0.0423, 
+valid_acc 0.6250
+epoch:  6
+train_loss: 0.0112,0.7069
+valid_loss: 0.0573, 
+valid_acc 0.5625
+epoch:  7
+train_loss: 0.0117,0.6913
+valid_loss: 0.0455, 
+valid_acc 0.6875
+epoch:  8
+train_loss: 0.0110,0.7247
+valid_loss: 0.0426, 
+valid_acc 0.6250
+epoch:  9
+train_loss: 0.0114,0.7044
+valid_loss: 0.0503, 
+valid_acc 0.5625
+epoch:  10
+train_loss: 0.0111,0.7143
+valid_loss: 0.0390, 
+valid_acc 0.7500
+levou 1170.2183649539948 segundos 
+acertos: 34 
+erros:16
+tensor([[207.,  27.],
+        [165., 225.]])
+tensor([0.8846, 0.5769])

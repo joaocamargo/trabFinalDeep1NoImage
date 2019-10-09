@@ -1,0 +1,33 @@
+cuda:0
+Resize 256
+randomcrop 224
+batchsize - 100
+53
+1
+7
+weights = torch.tensor([2.88, 1.0]).to(device)
+optimizer = torch.optim.Adagrad(model.parameters(), lr = 0.001)
+levou 0.0034897327423095703 segundos 
+epochs =10, patience = 3
+epoch:  1
+train_loss: 0.0054,0.7431
+valid_loss: 0.0419, 
+valid_acc 0.5625
+epoch:  2
+train_loss: 0.0043,0.8345
+valid_loss: 0.0481, 
+valid_acc 0.6875
+epoch:  3
+train_loss: 0.0040,0.8491
+valid_loss: 0.0463, 
+valid_acc 0.6875
+epoch:  4
+train_loss: 0.0036,0.8650
+valid_loss: 0.0433, 
+valid_acc 0.6250
+levou 472.91395592689514 segundos 
+acertos: 69 
+erros:31
+tensor([[ 54., 180.],
+        [ 13., 377.]])
+tensor([0.2308, 0.9667])

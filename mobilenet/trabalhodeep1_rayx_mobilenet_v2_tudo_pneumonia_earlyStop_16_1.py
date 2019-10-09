@@ -6,7 +6,7 @@ import torch.nn.functional as F
 from torch import nn
 from torchvision import datasets, transforms, models
 
-filename = "mobilenet_v2_10e_patience3_16_1.txt"
+filename = "mobilenet_v2_10e_patience3_288_1.txt"
 
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
@@ -146,8 +146,8 @@ print(model)
 import time
 start_time = time.time()
 
-weights = torch.tensor([16.0, 1.0]).to(device)
-print('weights = torch.tensor([16.0, 1.0]).to(device)',file=open(filename, "a"))
+weights = torch.tensor([2.88,1.0]).to(device)
+print('weights = torch.tensor([2.88, 1.0]).to(device)',file=open(filename, "a"))
 
 criterion = nn.CrossEntropyLoss(weight=weights)
 optimizer = torch.optim.Adagrad(model.parameters(), lr = 0.001)
