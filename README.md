@@ -15,6 +15,6 @@ Um arquivo de output será gerado com os prints dos detalhes das execuções com
 # Pasta GoogleColab
 
 No google será necessário copiar o dataset para seu Gdrive e rodar dele.<br>
-Para facilitar pode acessar um repositório do Gdrive aqui: https://drive.google.com/drive/folders/1AoZMJUXTlkk1BJfER5BA6SH2rkZx_lk_?usp=sharing
+Para facilitar pode acessar um repositório do Gdrive aqui: https://drive.google.com/drive/folders/1AoZMJUXTlkk1BJfER5BA6SH2rkZx_lk_?usp=sharing <br>
 Para facilitar deverá aparecer um link no gdrive como "copiar para meu drive", após copiado, rodando no google colab é só se autenticar quando a celula especifica for executada. 
 
