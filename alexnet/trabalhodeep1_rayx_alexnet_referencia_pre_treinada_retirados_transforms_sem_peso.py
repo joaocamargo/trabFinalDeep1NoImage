@@ -124,9 +124,10 @@ start_time = time.time()
 ##EPOCHS###########
 
 
-epochs =7
+epochs =40
 
 print('epochs =' + str(epochs),file=open(filename, "a"))
+
 
 
 running_loss_history=[]
